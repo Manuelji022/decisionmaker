@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A web app that helps you make decisions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <title>decisionmaker</title>
+  </head>
+  <body>
+    <div class="max-width-wrapper">
+      <div class="container">
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+        <form id="form">
+          <div class="options-container">
+            <label for="option1" id="option1-label"></label>
+            <input type="text" id="option1" placeholder="">
+            <label for="option2" id="option2-label"></label>
+            <input type="text" id="option2" placeholder="">
+          </div>
+          <div class="buttons-container">
+           <button type="submit" id="submit"></button>
+           <button id="clear" type="button"></button>
+          </div>
+          <p id="subtitle2"></p>
+        </form>
+        <div id="selection-box" class="selection-box">
+          <p id="selection"></p>
+          <button id="repeat" type="button"></button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
