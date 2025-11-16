@@ -198,7 +198,7 @@ button::before {
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(217, 119, 87, 0.35);
-  background-color: #c8694a;
+  background-color: var(--tertiary-color);
 }
 
 button:hover::before {
@@ -220,7 +220,7 @@ button:focus {
 }
 
 #submit:hover {
-  background-color: #c8694a;
+  background-color: var(--tertiary-color);
 }
 
 #clear {
@@ -230,7 +230,7 @@ button:focus {
 }
 
 #clear:hover {
-  background-color: #1a1a1a;
+  background-color: var(--primary-color);
   color: white;
   box-shadow: 0 4px 12px rgba(36, 36, 36, 0.35);
 }
@@ -242,7 +242,7 @@ button:focus {
     box-shadow: 0 2px 8px rgba(242, 240, 227, 0.25);
   }
   #clear:hover {
-    background-color: #e8e6d9;
+    background-color: var(--secondary-color);
     color: var(--primary-color);
     box-shadow: 0 4px 12px rgba(242, 240, 227, 0.35);
   }
@@ -261,7 +261,7 @@ button:focus {
 }
 
 .selection-box {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   padding: 1.25rem;
   background-color: white;
   border: 2px solid var(--primary-color);
@@ -275,12 +275,12 @@ button:focus {
 
 @media (min-width: 640px) {
   .selection-box {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 }
 
 #selection {
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   margin: 0;
   text-align: center;
