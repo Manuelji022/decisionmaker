@@ -1,21 +1,21 @@
 :root {
-  font-family: 'Bricolage Grotesque', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Bricolage Grotesque", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --primary-color: #242424;
-  --secondary-color: #F2F0E3;
-  --tertiary-color: #D97757;
+  --secondary-color: #f2f0e3;
+  --tertiary-color: #d97757;
 
   color-scheme: light dark;
   color: black;
-  background-color: #F2F0E3;
+  background-color: #f2f0e3;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -64,7 +64,7 @@
     padding: 2rem;
   }
 }
-  
+
 .container {
   display: flex;
   flex-direction: column;
@@ -74,7 +74,13 @@
 h1 {
   text-align: center;
   margin: 0;
-  font-size: clamp(4rem, 6vw, 6rem);
+  font-size: clamp(3.5rem, 6vw, 6rem);
+}
+
+@media (max-width: 640px) {
+  h1 {
+    line-height: normal;
+  }
 }
 
 h1::selection {
@@ -90,7 +96,7 @@ p::selection {
 p {
   text-align: center;
   margin: 0;
-  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 form {
@@ -187,7 +193,7 @@ button {
 }
 
 button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
