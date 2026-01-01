@@ -142,8 +142,26 @@ input[type="text"]:focus {
 
 @media (max-width: 640px) {
   .options-container {
-    flex-direction: column;
     gap: 0.5rem;
+  }
+}
+
+.additional-options-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .additional-options-container {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .additional-options-container input {
+    width: fit-content;
   }
 }
 
@@ -157,7 +175,20 @@ input[type="text"]:focus {
 
 @media (max-width: 640px) {
   .buttons-container {
+    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
+  }
+  .secondary-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .secondary-buttons button {
+    flex: 1;
+    max-width: 160px;
   }
 }
 
@@ -246,8 +277,8 @@ button:focus {
   }
 }
 
-#repeat {
-  background-color: var(--tertiary-color);
+#add-option {
+  background-color: var(--primary-color);
 }
 
 .selection-box {
@@ -276,4 +307,8 @@ button:focus {
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.hidden {
+  display: none !important;
 }

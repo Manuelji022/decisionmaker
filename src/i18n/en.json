@@ -5,8 +5,12 @@
     "submit": "Choose",
     "selection": "The choice is",
     "repeat": "Choose again",
-    "subtitle2": "Enter two options and let fate decide",
+    "subtitle2": "Enter up to four options and let fate decide",
     "option1Placeholder": "Option 1",
     "option2Placeholder": "Option 2",
+    "option3Placeholder": "Option 3",
+    "option4Placeholder": "Option 4",
+    "addOption": "Add option",
+    "removeOption": "Remove option",
     "clear": "Clear"
 }
