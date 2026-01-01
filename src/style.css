@@ -117,12 +117,6 @@ input[type="text"] {
   -webkit-tap-highlight-color: transparent;
 }
 
-@media (max-width: 640px) {
-  input[type="text"] {
-    width: fit-content;
-  }
-}
-
 input[type="text"]:hover {
   border-color: var(--tertiary-color);
 }
@@ -142,7 +136,12 @@ input[type="text"]:focus {
 
 @media (max-width: 640px) {
   .options-container {
+    flex-direction: column;
+    width: 100%;
     gap: 0.5rem;
+  }
+  .options-container input[type="text"] {
+    width: 100%;
   }
 }
 
@@ -155,13 +154,12 @@ input[type="text"]:focus {
 
 @media (max-width: 640px) {
   .additional-options-container {
+    flex-direction: column;
+    width: 100%;
     gap: 0.5rem;
   }
-}
-
-@media (max-width: 640px) {
-  .additional-options-container input {
-    width: fit-content;
+  .additional-options-container input[type="text"] {
+    width: 100%;
   }
 }
 
@@ -173,6 +171,11 @@ input[type="text"]:focus {
   margin-top: 0.5rem;
 }
 
+.secondary-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
 @media (max-width: 640px) {
   .buttons-container {
     flex-direction: column;
@@ -180,8 +183,6 @@ input[type="text"]:focus {
     gap: 0.5rem;
   }
   .secondary-buttons {
-    display: flex;
-    flex-direction: row;
     gap: 0.5rem;
     width: 100%;
     justify-content: center;
@@ -281,6 +282,19 @@ button:focus {
   background-color: var(--primary-color);
 }
 
+@media (prefers-color-scheme: dark) {
+  #add-option {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(242, 240, 227, 0.25);
+  }
+  #add-option:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(242, 240, 227, 0.35);
+  }
+}
+
 .selection-box {
   padding: 1.25rem;
   background-color: white;
@@ -297,6 +311,9 @@ button:focus {
 @media (max-width: 640px) {
   .selection-box {
     padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
