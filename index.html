@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="For undecided people" />
+    <meta name="description" content="Stuck between choices? Use our free Decision Maker tool. Enter up to four options and let fate decide. The fastest way to make hard decisions online." />
+    <meta property="og:title" content="Decision Maker - Random Choice Picker &amp; Decision Helper" />
+    <meta property="og:description" content="Can't decide? Let us choose for you. Free online decision maker tool. Enter up to four options and let fate decide." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://decisionmaker.manuelji.dev" />
+    <meta property="og:image" content="https://decisionmaker.manuelji.dev/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Decision Maker - Random Choice Picker &amp; Decision Helper" />
+    <meta name="twitter:description" content="Stuck between choices? Use our free Decision Maker tool. Enter up to four options and let fate decide." />
+    <link rel="canonical" href="https://decisionmaker.manuelji.dev" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,13 +20,24 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
       rel="stylesheet"
     />
-    <title>Decision Maker</title>
+    <title>Decision Maker - Random Choice Picker &amp; Decision Helper</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Decision Maker",
+        "description": "Free online random choice picker and decision helper tool.",
+        "applicationCategory": "Utilities",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript"
+      }
+    </script>
   </head>
   <body>
     <div class="max-width-wrapper">
       <div class="container">
         <h1 id="title"></h1>
-        <p id="subtitle"></p>
+        <h2 id="subtitle"></h2>
         <form id="form">
           <div class="options-container">
             <label for="option1" id="option1-label"></label>
