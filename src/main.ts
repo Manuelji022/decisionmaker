@@ -3,6 +3,7 @@ import { i18n } from "./i18n/i18n";
 
 let optionCount = 2;
 const maxOptions = 4;
+let focusedOptionIndex: number | null = null;
 
 function applyTranslations() {
   const titleEl = document.getElementById("title");
@@ -15,6 +16,9 @@ function applyTranslations() {
   const addOptionEl = document.getElementById(
     "add-option"
   ) as HTMLButtonElement;
+  const deleteOptionEl = document.getElementById(
+    "delete-option"
+  ) as HTMLButtonElement;
 
   if (titleEl) titleEl.textContent = i18n.t("title");
   if (subtitleEl) subtitleEl.textContent = i18n.t("subtitle");
@@ -23,10 +27,8 @@ function applyTranslations() {
   if (option3El) option3El.placeholder = i18n.t("option3Placeholder");
   if (option4El) option4El.placeholder = i18n.t("option4Placeholder");
   if (submitEl) submitEl.textContent = i18n.t("submit");
-  if (addOptionEl) {
-    addOptionEl.textContent =
-      optionCount > 2 ? i18n.t("removeOption") : i18n.t("addOption");
-  }
+  if (addOptionEl) addOptionEl.textContent = i18n.t("addOption");
+  if (deleteOptionEl) deleteOptionEl.textContent = i18n.t("deleteOption");
 
   document.documentElement.lang = i18n.getLanguage();
 }
@@ -83,10 +85,15 @@ function randomSelection() {
 
 function updateAddOptionButton() {
   const addOptionEl = document.getElementById("add-option");
+  const deleteOptionEl = document.getElementById(
+    "delete-option"
+  ) as HTMLButtonElement;
   if (addOptionEl) {
-    addOptionEl.classList.remove("hidden");
-    addOptionEl.textContent =
-      optionCount >= maxOptions ? i18n.t("removeOption") : i18n.t("addOption");
+    addOptionEl.classList.toggle("hidden", optionCount >= maxOptions);
+    addOptionEl.textContent = i18n.t("addOption");
+  }
+  if (deleteOptionEl) {
+    deleteOptionEl.disabled = optionCount <= 2;
   }
 }
 
@@ -133,6 +140,41 @@ function removeOption() {
   }
 }
 
+function deleteFocusedOption() {
+  if (focusedOptionIndex === null || optionCount <= 2) return;
+
+  const index = Math.min(focusedOptionIndex, optionCount);
+  if (index < 1 || index > optionCount) return;
+
+  // Shift following values up so there are no gaps after deleting an option.
+  for (let i = index; i < optionCount; i++) {
+    const current = document.getElementById(`option${i}`) as HTMLInputElement;
+    const next = document.getElementById(`option${i + 1}`) as HTMLInputElement;
+    if (current && next) current.value = next.value;
+  }
+
+  const lastOption = document.getElementById(
+    `option${optionCount}`
+  ) as HTMLInputElement;
+  if (lastOption) {
+    lastOption.value = "";
+    lastOption.classList.add("hidden");
+  }
+
+  optionCount--;
+  focusedOptionIndex = Math.min(index, optionCount);
+  updateAddOptionButton();
+
+  if (optionCount === 2) {
+    document.querySelector(".additional-options-container")?.classList.add("hidden");
+  }
+
+  const newFocusedOption = document.getElementById(
+    `option${focusedOptionIndex}`
+  ) as HTMLInputElement;
+  newFocusedOption?.focus();
+}
+
 function hideAdditionalOptionsOnLoad() {
   // Ensure options 3 and 4 are hidden on page load
   const option3El = document.getElementById("option3");
@@ -175,6 +217,19 @@ if (clearEl) {
 }
 
 function clearSelection() {
+  // The clear button takes focus when clicked, so remember which option was
+  // focused before it was clicked and clear only that option.
+  if (focusedOptionIndex !== null) {
+    const optionEl = document.getElementById(
+      `option${focusedOptionIndex}`
+    ) as HTMLInputElement;
+    if (optionEl) {
+      optionEl.value = "";
+      hideSelection();
+      return;
+    }
+  }
+
   for (let i = 1; i <= maxOptions; i++) {
     const optionEl = document.getElementById(`option${i}`) as HTMLInputElement;
     if (optionEl) {
@@ -200,6 +255,18 @@ function clearSelection() {
 const subtitle2El = document.getElementById("subtitle2");
 if (subtitle2El) {
   subtitle2El.textContent = i18n.t("subtitle2");
+}
+
+for (let i = 1; i <= maxOptions; i++) {
+  const optionEl = document.getElementById(`option${i}`);
+  optionEl?.addEventListener("focus", () => {
+    focusedOptionIndex = i;
+  });
+}
+
+const deleteOptionBtnEl = document.getElementById("delete-option");
+if (deleteOptionBtnEl) {
+  deleteOptionBtnEl.addEventListener("click", deleteFocusedOption);
 }
 
 const addOptionBtnEl = document.getElementById("add-option");

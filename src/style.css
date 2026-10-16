@@ -214,13 +214,20 @@ form {
 }
 
 #add-option,
+#delete-option,
 #clear {
   background: var(--color-ink);
 }
 
 #add-option:hover,
+#delete-option:hover,
 #clear:hover {
   background: var(--color-accent-dark);
+}
+
+#delete-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 #subtitle2 {

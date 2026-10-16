@@ -11,5 +11,6 @@
     "option4Placeholder": "Option 4",
     "addOption": "Add option",
     "removeOption": "Remove option",
+    "deleteOption": "Delete option",
     "clear": "Clear"
 }
