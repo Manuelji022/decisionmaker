@@ -166,12 +166,21 @@ form {
   margin-top: var(--space-5);
 }
 
-.options-container,
-.additional-options-container {
+.options-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-2);
   width: 100%;
+}
+
+/* Keep newly revealed fields in the same grid so adding an option does not
+   introduce a second, unevenly spaced row. */
+.additional-options-container {
+  display: contents;
+}
+
+.additional-options-container.hidden {
+  display: none !important;
 }
 
 .options-container label {
@@ -255,8 +264,7 @@ form {
     margin-top: var(--space-4);
   }
 
-  .options-container,
-  .additional-options-container {
+  .options-container {
     grid-template-columns: 1fr;
   }
 
