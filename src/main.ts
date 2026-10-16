@@ -4,6 +4,7 @@ import { i18n } from "./i18n/i18n";
 let optionCount = 2;
 const maxOptions = 4;
 let focusedOptionIndex: number | null = null;
+let buttonTargetOptionIndex: number | null = null;
 
 function applyTranslations() {
   const titleEl = document.getElementById("title");
@@ -141,9 +142,11 @@ function removeOption() {
 }
 
 function deleteFocusedOption() {
-  if (focusedOptionIndex === null || optionCount <= 2) return;
+  const targetIndex = buttonTargetOptionIndex;
+  buttonTargetOptionIndex = null;
+  if (targetIndex === null || optionCount <= 2) return;
 
-  const index = Math.min(focusedOptionIndex, optionCount);
+  const index = Math.min(targetIndex, optionCount);
   if (index < 1 || index > optionCount) return;
 
   // Shift following values up so there are no gaps after deleting an option.
@@ -219,16 +222,18 @@ if (clearEl) {
 function clearSelection() {
   // The clear button takes focus when clicked, so remember which option was
   // focused before it was clicked and clear only that option.
-  if (focusedOptionIndex !== null) {
+  if (buttonTargetOptionIndex !== null) {
     const optionEl = document.getElementById(
-      `option${focusedOptionIndex}`
+      `option${buttonTargetOptionIndex}`
     ) as HTMLInputElement;
     if (optionEl) {
       optionEl.value = "";
+      buttonTargetOptionIndex = null;
       hideSelection();
       return;
     }
   }
+  buttonTargetOptionIndex = null;
 
   for (let i = 1; i <= maxOptions; i++) {
     const optionEl = document.getElementById(`option${i}`) as HTMLInputElement;
@@ -265,9 +270,18 @@ for (let i = 1; i <= maxOptions; i++) {
 }
 
 const deleteOptionBtnEl = document.getElementById("delete-option");
-if (deleteOptionBtnEl) {
-  deleteOptionBtnEl.addEventListener("click", deleteFocusedOption);
+const clearButtonEl = document.getElementById("clear");
+
+function captureButtonTarget() {
+  const activeElement = document.activeElement as HTMLInputElement | null;
+  const match = activeElement?.id.match(/^option([1-4])$/);
+  buttonTargetOptionIndex = match ? Number(match[1]) : null;
 }
+
+// Capture the option before the button click moves focus away from it.
+deleteOptionBtnEl?.addEventListener("mousedown", captureButtonTarget);
+clearButtonEl?.addEventListener("mousedown", captureButtonTarget);
+deleteOptionBtnEl?.addEventListener("click", deleteFocusedOption);
 
 const addOptionBtnEl = document.getElementById("add-option");
 if (addOptionBtnEl) {
